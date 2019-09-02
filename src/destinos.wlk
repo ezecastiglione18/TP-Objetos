@@ -1,4 +1,5 @@
 /** First Wollok example */
+
 object garlicSea {
 	const nombre = "Garlic Sea"
 	var equipaje = ["Cania de pescar","Piloto"]
@@ -14,6 +15,10 @@ object garlicSea {
 	
 	method equipaje(){
 		return equipaje
+	}
+	
+	method esDestacado(){
+		return precio > 2000
 	}
 }
 
@@ -33,6 +38,10 @@ object silverSea {
 	method equipaje(){
 		return equipaje
 	}
+	
+	method esDestacado(){
+		return precio > 2000
+	}
 }
 
 object lastToninas {
@@ -50,6 +59,10 @@ object lastToninas {
 	
 	method equipaje(){
 		return equipaje
+	}
+	
+	method esDestacado(){
+		return precio > 2000
 	}
 }
 
@@ -69,51 +82,8 @@ object goodAirs {
 	method equipaje(){
 		return equipaje
 	}
+	
+	method esDestacado(){
+		return precio > 2000
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

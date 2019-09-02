@@ -58,6 +58,10 @@ object goodAirs {
 	var equipaje = ["Cerveza","Protector Solar"]
 	const precio = 1500
 	
+	method nombre(){
+		return nombre
+	}
+	
 	method precio(){
 		return precio
 	}
@@ -66,6 +70,7 @@ object goodAirs {
 		return equipaje
 	}
 }
+
 
 
 

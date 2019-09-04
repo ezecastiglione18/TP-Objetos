@@ -1,5 +1,3 @@
-/** First Wollok example */
-
 object garlicSea {
 	const nombre = "Garlic Sea"
 	var equipaje = ["Cania de pescar","Piloto"]
@@ -21,8 +19,9 @@ object garlicSea {
 		return precio > 2000
 	}
 	
-	method efectuarDto(descuento){
-		precio = ((100 - descuento) * 100) / precio
+	method aplicarDto(descuento){	
+		precio = precio - ((descuento * precio)/100)
+		equipaje.add("Certificado de Descuento")
 	}
 }
 
@@ -35,6 +34,11 @@ object silverSea {
 		return nombre
 	}
 	
+	method aplicarDto(descuento){	
+		precio = precio - ((descuento * precio)/100)
+		equipaje.add("Certificado de Descuento")
+	}
+	
 	method precio(){
 		return precio
 	}
@@ -45,11 +49,6 @@ object silverSea {
 	
 	method esDestacado(){
 		return precio > 2000
-	}
-	
-	
-	method efectuarDto(descuento){
-		precio = ((100 - descuento) * 100) / precio
 	}
 }
 
@@ -62,6 +61,11 @@ object lastToninas {
 		return nombre
 	}
 	
+	method aplicarDto(descuento){	
+		precio = precio - ((descuento * precio)/100)
+		equipaje.add("Certificado de Descuento")
+	}
+	
 	method precio(){
 		return precio
 	}
@@ -72,12 +76,7 @@ object lastToninas {
 	
 	method esDestacado(){
 		return precio > 2000
-	}
-	
-	
-	method efectuarDto(descuento){
-		precio = ((100 - descuento) * 100) / precio
-	}
+	}	
 }
 
 object goodAirs {
@@ -89,6 +88,11 @@ object goodAirs {
 		return nombre
 	}
 	
+	method aplicarDto(descuento){	
+		precio = precio - ((descuento * precio)/100)
+		equipaje.add("Certificado de Descuento")
+	}
+	
 	method precio(){
 		return precio
 	}
@@ -99,9 +103,5 @@ object goodAirs {
 	
 	method esDestacado(){
 		return precio > 2000
-	}
-	
-	method efectuarDto(descuento){
-		precio = ((100 - descuento) * 100) / precio
 	}
 }

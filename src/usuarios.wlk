@@ -19,8 +19,12 @@ object phari{
 		return listaSeguidos
 	}
 	
-	method obtenerKM(){
-		return 0.1 * destinosVisitados.sum( {destino => destino.precio()} )
+	method destinosVisitados(){
+		return destinosVisitados
+	}
+	
+	method obtenerKM(usuario){
+		return 0.1 * (usuario.destinosVisitados().sum( {destino => destino.precio()} ))
 	}
 	
 	/*method empezarASeguir(usuario){
@@ -31,8 +35,8 @@ object phari{
 	method seguir(unUsuario, otroUsuario){
 		if (! unUsuario.listaSeguidos().contains(otroUsuario))
 		{
-			unUsuario.listaSeguidos.add(otroUsuario)
-			otroUsuario.listaSeguidos.add(unUsuario)
+			unUsuario.listaSeguidos().add(otroUsuario)
+			otroUsuario.listaSeguidos().add(unUsuario)
 		}
 	}*/
 }

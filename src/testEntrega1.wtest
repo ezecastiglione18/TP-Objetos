@@ -1,0 +1,9 @@
+import empresa.*
+import usuarios.*
+import destinos.*
+
+// el resultado da pero es una lista de listas 
+test "los destinos mas importantes de barrileteCosmico el mas importante es garlicSea"
+{
+	assert.equals([garlicSea], barrileteCosmico.destinosMasImportantes())
+}

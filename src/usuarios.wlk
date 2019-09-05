@@ -1,42 +1,30 @@
 import destinos.*
 
-object phari{
-	const nombre= "Pablo Hari"
-	var destinosVisitados = #{lastToninas,goodAirs}
-	var saldoRestante = 1500
+object pabloHari
+{
+	var property usuario = "PHari"
+	var historial = #{lastToninas,goodAirs}
+	var cuenta = 1500
 	var listaSeguidos = #{}
 	var listaSeguidores = #{}
 	
-	method volarDestino(destino){
-		if (saldoRestante >= destino.precio() && !destinosVisitados.contains(destino))
+	method puedeViajar(destino)
+	{
+		return cuenta - destino.precio() >= 0	
+	}
+	
+	method volarHacia(destino)
+	{
+		if (self.puedeViajar(destino))
 		{
-			destinosVisitados.add(destino)			
-			saldoRestante -= destino.precio()
-		}
+			historial.add(destino)
+			cuenta -= destino.precio()
+		}	
 	}
 	
-	method listaSeguidos(){
-		return listaSeguidos
+	method kilometros()
+	{
+		return historial.sum({destino => destino.precio()}) * 0.1
 	}
 	
-	method destinosVisitados(){
-		return destinosVisitados
-	}
-	
-	method obtenerKM(usuario){
-		return 0.1 * (usuario.destinosVisitados().sum( {destino => destino.precio()} ))
-	}
-	
-	/*method empezarASeguir(usuario){
-		seguir(self, usuario)
-		seguir(usuario, self)
-	}
-	
-	method seguir(unUsuario, otroUsuario){
-		if (! unUsuario.listaSeguidos().contains(otroUsuario))
-		{
-			unUsuario.listaSeguidos().add(otroUsuario)
-			otroUsuario.listaSeguidos().add(unUsuario)
-		}
-	}*/
 }

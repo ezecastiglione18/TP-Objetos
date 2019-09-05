@@ -21,3 +21,8 @@ test "aplicarle 25 de descuento a lastToninas y tiene el certificado de decuento
 	assert.that(lastToninas.equipajeImprescindible().contains("certificado de descuento"))
 }
 
+test "silver sea no es un destino peligroso"
+{
+	assert.notThat(silverSea.esPeligroso())
+}
+

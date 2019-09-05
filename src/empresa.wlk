@@ -37,7 +37,11 @@ object barrileteCosmico
 	{
 		return destinos.filter({destino => destino.esPeligroso()})
 	}
-
+	
+	method preciosDeLosDestinos()
+	{
+		return destinos.map({destino => destino.precio()})
+	}
 }
 
 	 

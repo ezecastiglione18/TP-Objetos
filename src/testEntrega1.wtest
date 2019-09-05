@@ -26,10 +26,10 @@ test "silver sea no es un destino peligroso"
 	assert.notThat(silverSea.esPeligroso())
 }
 
-test "aplicar descuento a todos comparar valores y tienen el certificado"
+test "aplicar descuento a todos comparar valores "
 {
-	// es una mala practica utilizar muchos assert en 1 solo test pero no se me ocurrio otra forma de hacerlo
-	// coincidir lista con valores harcodeados con los del ejercicio
+/*  es una mala practica utilizar muchos assert en 1 solo test pero no se me ocurrio otra forma de hacerlo
+ coincidir lista con valores harcodeados con los del ejercicio
 	barrileteCosmico.aplicarDescuento(15)
 	assert.equals(2125,garlicSea.precio())
 	assert.equals(1147.5,silverSea.precio())
@@ -37,7 +37,15 @@ test "aplicar descuento a todos comparar valores y tienen el certificado"
 	assert.equals(1275,goodAirs.precio())
 	
 	barrileteCosmico.destinos().all({destino => destino.tieneDescuento()})
-	
+*/	
+	barrileteCosmico.aplicarDescuento(15)
+	assert.equals([2125,1147.5,1275,1275],barrileteCosmico.preciosDeLosDestinos()) 
+}
+
+test "al aplicarDescuento a todos, todos tienen el certificado de descuento"
+{
+	barrileteCosmico.aplicarDescuento(15)
+	assert.that(barrileteCosmico.destinos().all({destino => destino.tieneDescuento()}))
 }
 
 // el resultado da pero es una lista de listas 

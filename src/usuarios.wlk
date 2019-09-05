@@ -3,10 +3,10 @@ import destinos.*
 object pabloHari
 {
 	var property usuario = "PHari"
-	var historial = #{lastToninas,goodAirs}
-	var cuenta = 1500
-	var listaSeguidos = #{}
-	var listaSeguidores = #{}
+	var property historial = #{lastToninas,goodAirs}
+	var property cuenta = 1500
+	var property siguiendo = #{} // el anterior era un mal nombre
+//	var property seguidores = #{} // el anterior era un mal nombre
 	
 	method puedeViajar(destino)
 	{
@@ -25,6 +25,16 @@ object pabloHari
 	method kilometros()
 	{
 		return historial.sum({destino => destino.precio()}) * 0.1
+	}
+	
+	
+	method seguirUsuario(user)
+	{
+		if(not siguiendo.contains(user))
+		{
+			siguiendo.add(user)
+			user.seguirUsuario(self)
+		}
 	}
 	
 }

@@ -15,3 +15,9 @@ test "aplicarle 25 de descuento a lastToninas con resultado 1125"
 	assert.equals(1125,lastToninas.precio())
 }
 
+test "aplicarle 25 de descuento a lastToninas y tiene el certificado de decuento en los imprescindibles"
+{
+	lastToninas.aplicarDescuento(25)
+	assert.that(lastToninas.equipajeImprescindible().contains("certificado de descuento"))
+}
+

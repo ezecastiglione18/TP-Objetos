@@ -40,3 +40,8 @@ test "aplicar descuento a todos comparar valores y tienen el certificado"
 	
 }
 
+// el resultado da pero es una lista de listas 
+test "los destinos mas peligrosos hasta el momento"
+{
+	assert.equals([lastToninas],barrileteCosmico.destinosPeligrosos())
+}

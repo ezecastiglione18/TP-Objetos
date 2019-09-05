@@ -1,107 +1,102 @@
-object garlicSea {
-	const nombre = "Garlic Sea"
-	var equipaje = ["Cania de pescar","Piloto"]
-	var precio = 2500
+import empresa.*
+import usuarios.*
+
+object garlicSea 
+{
+	var property nombre = "garlics Sea"
+	var property equipajeImprescindible = ["cana de pescar", "piloto"]
+	var property precio = 2500
 	
-	method nombre(){
-		return nombre
+	method esDestacado() = precio > 2000
+	
+	method aplicarDescuento(valor)
+	{
+		precio -= precio * valor / 100
+		equipajeImprescindible.add("certificado de descuento")
 	}
 	
-	method precio(){
-		return precio
+	method esPeligroso()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("vacuna")})
 	}
 	
-	method equipaje(){
-		return equipaje
-	}
-	
-	method esDestacado(){
-		return precio > 2000
-	}
-	
-	method aplicarDto(descuento){	
-		precio = precio - ((descuento * precio)/100)
-		equipaje.add("Certificado de Descuento")
+	method tieneDescuento()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("certificado de descuento")})
 	}
 }
 
-object silverSea {
-	const nombre = "Silver Sea"
-	var equipaje = ["Protector Solar","Equipo de buceo"]
-	var precio = 1350
+object silverSea 
+{
+	var property nombre = "silvers Sea"
+	var property equipajeImprescindible = ["protector solar","equipo de buceo"]
+	var property precio = 1350
 	
-	method nombre(){
-		return nombre
+	method esDestacado() = precio > 2000
+	
+	method aplicarDescuento(valor)
+	{
+		precio -= precio * valor / 100
+		equipajeImprescindible.add("certificado de descuento")
 	}
 	
-	method aplicarDto(descuento){	
-		precio = precio - ((descuento * precio)/100)
-		equipaje.add("Certificado de Descuento")
+	method esPeligroso()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("vacuna")})
 	}
 	
-	method precio(){
-		return precio
-	}
-	
-	method equipaje(){
-		return equipaje
-	}
-	
-	method esDestacado(){
-		return precio > 2000
+	method tieneDescuento()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("certificado de descuento")})
 	}
 }
 
-object lastToninas {
-	const nombre = "Last Toninas"
-	var equipaje = ["Vacuna gripal","Vacuna B", "Necronomicon"]
-	var precio = 3500
+object lastToninas
+{
+	var property nombre = "last Toninas"
+	var property equipajeImprescindible = ["vacuna gripal","vacuna b","necronomicon"]
+	var property precio = 1500
 	
-	method nombre(){
-		return nombre
+	method esDestacado() = precio > 2000
+	
+	method aplicarDescuento(valor)
+	{
+		precio -= precio * valor / 100
+		equipajeImprescindible.add("certificado de descuento")
 	}
 	
-	method aplicarDto(descuento){	
-		precio = precio - ((descuento * precio)/100)
-		equipaje.add("Certificado de Descuento")
+	method esPeligroso()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("vacuna")})
 	}
 	
-	method precio(){
-		return precio
+	method tieneDescuento()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("certificado de descuento")})
 	}
-	
-	method equipaje(){
-		return equipaje
-	}
-	
-	method esDestacado(){
-		return precio > 2000
-	}	
 }
 
-object goodAirs {
-	const nombre = "Good Airs"
-	var equipaje = ["Cerveza","Protector Solar"]
-	var precio = 1500
+object goodAirs
+{
+	var property nombre = "good Airs"
+	var property equipajeImprescindible = ["cerveza", "protector solar"]
+	var property precio = 1500
 	
-	method nombre(){
-		return nombre
+	method esDestacado() = precio > 2000
+	
+	method aplicarDescuento(valor)
+	{
+		precio -= precio * valor / 100
+		equipajeImprescindible.add("certificado de descuento")
 	}
 	
-	method aplicarDto(descuento){	
-		precio = precio - ((descuento * precio)/100)
-		equipaje.add("Certificado de Descuento")
+	method esPeligroso()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("vacuna")})
 	}
 	
-	method precio(){
-		return precio
-	}
-	
-	method equipaje(){
-		return equipaje
-	}
-	
-	method esDestacado(){
-		return precio > 2000
+	method tieneDescuento()
+	{
+		return equipajeImprescindible.any({equipaje => equipaje.contains("certificado de descuento")})
 	}
 }

@@ -23,11 +23,10 @@ object barrileteCosmico
 	
 	method aplicarDescuento(descuento)
 	{
-		destinos.forEach( {destino => destino.aplicarDto(descuento)} )
+		destinos.forEach( {destino => destino.aplicarDescuento(descuento)} )
 	}
 	
-	
-	
+
 }
 
 	 

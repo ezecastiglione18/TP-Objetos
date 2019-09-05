@@ -1,28 +1,32 @@
 import destinos.*
 
-object barrileteCosmico{
-	const nombre = "Barrilete cosmico"
-	var destinos = [garlicSea, silverSea, lastToninas, goodAirs]
-	
-	method destinos(){
-		return destinos
-	}
+object barrileteCosmico
+{
+// 	const nombre = "Barrilete cosmico"
+	var property destinos = [garlicSea, silverSea, lastToninas, goodAirs]
 
-	method destinosMasImportantes(){
+// con propert no hace falta getters y setters es un chiche de wollok estaba bien	
+//	method destinos()
+//	{
+//		return destinos
+//	}
+
+	method destinosMasImportantes()
+	{
 		return destinos.filter( {destino => destino.esDestacado()} )
 	}
 	
-	method cartaDeDestinos(){
+	method cartaDeDestinos()
+	{
 		return destinos.map( {destino => destino.nombre()} )
 	}
 	
-	method aplicarDescuento(descuento){
+	method aplicarDescuento(descuento)
+	{
 		destinos.forEach( {destino => destino.aplicarDto(descuento)} )
 	}
 	
-	method esExtrema(empresa){
-		
-	}
+	
 	
 }
 

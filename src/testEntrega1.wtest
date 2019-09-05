@@ -7,3 +7,11 @@ test "los destinos mas importantes de barrileteCosmico el mas importante es garl
 {
 	assert.equals([garlicSea], barrileteCosmico.destinosMasImportantes())
 }
+
+
+test "aplicarle 25 de descuento a lastToninas con resultado 1125"
+{
+	lastToninas.aplicarDescuento(25)
+	assert.equals(1125,lastToninas.precio())
+}
+

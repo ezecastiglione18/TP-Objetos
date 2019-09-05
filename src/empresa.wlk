@@ -26,6 +26,11 @@ object barrileteCosmico
 		destinos.forEach( {destino => destino.aplicarDescuento(descuento)} )
 	}
 	
+	method esExtrema()
+	{
+		return destinosConocidos.any({destino => destino.esPeligroso()})
+	}
+	
 
 }
 

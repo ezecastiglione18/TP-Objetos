@@ -28,9 +28,13 @@ object barrileteCosmico
 	
 	method esExtrema()
 	{
-		return destinosConocidos.any({destino => destino.esPeligroso()})
+		return destinos.any({destino => destino.esPeligroso()})
 	}
 	
+	method destinosPeligrosos()
+	{
+		return destinos.filter({destino => destino.esPeligroso()})
+	}
 
 }
 

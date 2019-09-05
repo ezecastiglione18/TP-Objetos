@@ -25,7 +25,7 @@ object pabloHari
 	
 	method kilometros()
 	{
-		return historial.sum({destino => destino.precio()}) * 0.1
+		return historial.map({destino => destino.precio()}).sum() * 0.1
 	}
 	
 	

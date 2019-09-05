@@ -53,3 +53,29 @@ test "los destinos mas peligrosos hasta el momento"
 {
 	assert.equals([lastToninas],barrileteCosmico.destinosPeligrosos())
 }
+
+test "es barrilete cosmico una empresa extrema"
+{	
+	assert.equals(true,barrileteCosmico.esExtrema())
+}
+test "obtener la carta de destinos (lastToninas, garlicSea, silverSea, goodAirs) de barrilete cosmico (solo nombre)"
+{
+	assert.equals(["garlics Sea", "silvers Sea", "last Toninas", "good Airs"], barrileteCosmico.cartaDeDestinos())
+}
+
+test "obtener los km de phari"
+{
+	assert.equals(300, pabloHari.kilometros())
+}
+
+test "hacer que phari vuele hasta silver's sea"
+{
+	pabloHari.volarHacia(silverSea)
+	assert.that(pabloHari.historial().contains(silverSea))
+}
+
+test "hacer que phari tenga $150 en su cuenta despues de volar a silver's Sea"
+{
+	pabloHari.volarHacia(silverSea)
+	assert.equals(150, pabloHari.cuenta())
+}

@@ -30,7 +30,7 @@ object barrileteCosmico
 	
 	method esExtrema()
 	{
-		return destinos.any({destino => destino.esPeligroso()})
+		return self.destinosMasImportantes().any({destino => destino.esPeligroso()})
 	}
 	
 	method destinosPeligrosos()

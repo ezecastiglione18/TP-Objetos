@@ -5,14 +5,14 @@ import destinos.*
 // el resultado da pero es una lista de listas 
 test "los destinos mas importantes de barrileteCosmico el mas importante es garlicSea"
 {
-	assert.equals([garlicSea], barrileteCosmico.destinosMasImportantes())
+	assert.equals([garlicSea, lastToninas], barrileteCosmico.destinosMasImportantes())
 }
 
 
 test "aplicarle 25 de descuento a lastToninas con resultado 1125"
 {
 	lastToninas.aplicarDescuento(25)
-	assert.equals(1125,lastToninas.precio())
+	assert.equals(2625,lastToninas.precio())
 }
 
 test "aplicarle 25 de descuento a lastToninas y tiene el certificado de decuento en los imprescindibles"
@@ -26,7 +26,7 @@ test "silver sea no es un destino peligroso"
 	assert.notThat(silverSea.esPeligroso())
 }
 
-test "aplicar descuento a todos comparar valores "
+test "aplicar descuento a todos"
 {
 /*  es una mala practica utilizar muchos assert en 1 solo test pero no se me ocurrio otra forma de hacerlo
  coincidir lista con valores harcodeados con los del ejercicio
@@ -39,7 +39,7 @@ test "aplicar descuento a todos comparar valores "
 	barrileteCosmico.destinos().all({destino => destino.tieneDescuento()})
 */	
 	barrileteCosmico.aplicarDescuento(15)
-	assert.equals([2125,1147.5,1275,1275],barrileteCosmico.preciosDeLosDestinos()) 
+	assert.equals([2125,1147.5,2975,1275],barrileteCosmico.preciosDeLosDestinos()) 
 }
 
 test "al aplicarDescuento a todos, todos tienen el certificado de descuento"
@@ -56,7 +56,7 @@ test "los destinos mas peligrosos hasta el momento"
 
 test "es barrilete cosmico una empresa extrema"
 {	
-	assert.equals(true,barrileteCosmico.esExtrema())
+	assert.that(barrileteCosmico.esExtrema())
 }
 test "obtener la carta de destinos (lastToninas, garlicSea, silverSea, goodAirs) de barrilete cosmico (solo nombre)"
 {
@@ -65,7 +65,7 @@ test "obtener la carta de destinos (lastToninas, garlicSea, silverSea, goodAirs)
 
 test "obtener los km de phari"
 {
-	assert.equals(300, pabloHari.kilometros())
+	assert.equals(500, pabloHari.kilometros())
 }
 
 test "hacer que phari vuele hasta silver's sea"

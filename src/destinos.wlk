@@ -55,7 +55,7 @@ object lastToninas
 {
 	var property nombre = "last Toninas"
 	var property equipajeImprescindible = ["vacuna gripal","vacuna b","necronomicon"]
-	var property precio = 1500
+	var property precio = 3500
 	
 	method esDestacado() = precio > 2000
 	

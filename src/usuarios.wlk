@@ -1,33 +1,33 @@
-import destinos.*
+import localidades.*
 import empresa.*
 
-object pabloHari
+class User
 {
-	var property usuario = "PHari"
-	var property historial = #{lastToninas,goodAirs}
-	var property cuenta = 1500
-	var property siguiendo = #{} // el anterior era un mal nombre
-//	var property seguidores = #{} // el anterior era un mal nombre
+	var nomreDeUsuario
+	var localidadDeOrigen
+	var viajes
+	var cuenta 
+	var siguiendo 
 	
-	method puedeViajar(destino)
+	constructor(nombre,origen,viajesRealizados,dinero,genteQueSigue)
 	{
-		return cuenta - destino.precio() >= 0	
+		nomreDeUsuario = nombre
+		localidadDeOrigen = origen
+		viajes = viajesRealizados
+		cuenta = dinero
+		siguiendo = genteQueSigue
 	}
-	
-	method volarHacia(destino)
+	// getter y setter de la localidad
+	method localidadDeOrigen(otraLocalidad)
 	{
-		if (self.puedeViajar(destino))
-		{
-			historial.add(destino)
-			cuenta -= destino.precio()
-		}	
+		localidadDeOrigen = otraLocalidad
 	}
-	
+	method localidadDeOrigen() = localidadDeOrigen 
+
 	method kilometros()
 	{
-		return historial.sum({destino => destino.precio()}) * 0.1
+		return viajes.sum({unViaje => unViaje.distanciaARecorrer()})
 	}
-	
 	
 	method seguirUsuario(user)
 	{
@@ -37,5 +37,34 @@ object pabloHari
 			user.seguirUsuario(self)
 		}
 	}
+
+	method planearUnViajeA(unDestino,unaEmpresa)
+	{
+		return unaEmpresa.armarViaje(self,unDestino)
+	}
+	
+	method costoDelViaje(destino,empresa)
+	{
+		return self.planearUnViajeA(destino,empresa).precio()
+	}
+	method puedeCostear(destino,empresa)
+	{
+		return cuenta - self.costoDelViaje(destino,empresa)>= 0	
+	}
+	
+	method hacerUnViajeA(unaLocalidad,unaEmpresa)
+	{
+		if (self.puedeCostear(unaLocalidad, unaEmpresa))
+		{
+			self.agregarViaje(unaLocalidad, unaEmpresa)
+			cuenta -= self.costoDelViaje(unaLocalidad, unaEmpresa)
+		}
+	}
+	method agregarViaje(unaLocalidad,unaEmpresa)
+	{
+		viajes.add(self.planearUnViajeA(unaLocalidad,unaEmpresa))
+	}
 	
 }
+
+	

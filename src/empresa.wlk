@@ -1,46 +1,52 @@
-import destinos.*
+import localidades.*
 import usuarios.*
+import viajes.*
 
 
-object barrileteCosmico
+class EmpresaDeViajes
 {
-// 	const nombre = "Barrilete cosmico"
-	var property destinos = [garlicSea, silverSea, lastToninas, goodAirs]
+	var localidades 
+	var transportesDisponibles 
 
-// con propert no hace falta getters y setters es un chiche de wollok estaba bien	
-//	method destinos()
-//	{
-//		return destinos
-//	}
-
-	method destinosMasImportantes()
+	constructor(unaLocalidad,unTransporte)
 	{
-		return destinos.filter( {destino => destino.esDestacado()} )
+		localidades = unaLocalidad
+		transportesDisponibles = unTransporte
+	}
+	
+	method localidadesMasImportantes()
+	{
+		return localidades.filter( {unaLocalidad => unaLocalidad.esDestacado()} )
 	}
 	
 	method cartaDeDestinos()
 	{
-		return destinos.map( {destino => destino.nombre()} )
+		return localidades.map( {localidad => localidad.nombre()} )
 	}
 	
 	method aplicarDescuento(descuento)
 	{
-		destinos.forEach( {destino => destino.aplicarDescuento(descuento)} )
+		localidades.forEach( {localidad => localidad.aplicarDescuento(descuento)} )
 	}
 	
 	method esExtrema()
 	{
-		return self.destinosMasImportantes().any({destino => destino.esPeligroso()})
+		return self.localidadesMasImportantes().any({localidad => localidad.esPeligroso()})
 	}
 	
 	method destinosPeligrosos()
 	{
-		return destinos.filter({destino => destino.esPeligroso()})
+		return localidades.filter({localidad => localidad.esPeligroso()})
 	}
 	
 	method preciosDeLosDestinos()
 	{
-		return destinos.map({destino => destino.precio()})
+		return localidades.map({localidad => localidad.precio()})
+	}
+	method armarViaje(unUsuario,unDestino)
+	{
+		return new Viaje(unUsuario.localidadDeOrigen(),unDestino,transportesDisponibles.anyOne())
+		
 	}
 }
 

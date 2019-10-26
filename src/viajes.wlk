@@ -13,7 +13,7 @@ class Viaje
 	
 	method precio()
 	{
-		return localidadDeDestino.precio() + medioDeTransporte.precioPorKilometro(self.distanciaARecorrer())
+		return localidadDeDestino.precio() + (medioDeTransporte.precioPorKilometro() * self.distanciaARecorrer())
 	}
 	
 	method distanciaARecorrer() = localidadDeOrigen.distanciaA(localidadDeDestino)

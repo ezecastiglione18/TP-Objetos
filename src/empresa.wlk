@@ -1,5 +1,6 @@
 import localidades.*
 import usuarios.*
+import mediosDeTransporte.*
 import viajes.*
 
 
@@ -43,9 +44,9 @@ class EmpresaDeViajes
 	{
 		return localidades.map({localidad => localidad.precio()})
 	}
-	method armarViaje(unUsuario,unDestino)
+	method armarViaje(unUsuario,unDestino, unTransporte)
 	{
-		return new Viaje(unUsuario.localidadDeOrigen(),unDestino,transportesDisponibles.anyOne())
+		return new Viaje(unUsuario.localidadDeOrigen(),unDestino, unTransporte)
 		
 	}
 }

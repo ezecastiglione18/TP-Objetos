@@ -1,0 +1,90 @@
+import localidades.*
+import mediosDeTransporte.*
+import viajes.*
+
+describe " tests de la entrega 2"
+{
+	var tranqui = 120
+	var garlicSea= new Localidad("Garlic Sea",["cana de pescar", "piloto"],2500,351)
+	var silverSea= new Localidad("Silver Sea",["protector solar","equipo de buceo"],1350,410)
+	var lastToninas = new Localidad ("Last Toninas",["vacuna gripal","vacuna b","necronomicon"],3500,336)
+	var goodAirs = new Localidad ("Good Airs",["cerveza", "protector solar"],1500,0)
+	var gesellVillage = new Localidad ("Gesell Village", ["birra","heladerita","mateKit","parlante","la Nave!"],5000,555)
+	var yerevan = new Localidad("Yerevan",["shawarma","protector solar"],80000,13392)
+ 	var colonia = new Localidad("Colonia del sacramento",["mate","yerba canarias","canabis"],2900,56)
+ 	var brasilia = new Localidad("Brasilia",["caipi","vacuna fiebre amarilla"],25000,3000)
+	// medios de tranporte
+	var larc_v = new MedioDeTransporte(30,0.15)
+	var ferrari488gtb = new MedioDeTransporte(340,1000)
+	var elRemisDeQuique = new MedioDeTransporte(120,20)
+	var nubeVoladoraDeGoku = new MedioDeTransporte(1000,80)
+	var buquebusVip = new MedioDeTransporte(20,36)
+	var laNaveee = new MedioDeTransporte(tranqui,5.52)
+	
+	
+	// viajes
+	var findeLargoConChongo = new Viaje (goodAirs,colonia,buquebusVip)
+	var vacacionesConLosPibes = new Viaje (goodAirs,gesellVillage,laNaveee)
+	var planDeEscapeNarco= new Viaje (colonia,colombia,ferrari488gtb)
+	
+	// empresas de viajes
+	var
+	test "aplicarle 25 de descuento a lastToninas con resultado 2625"
+	{
+		lastToninas.aplicarDescuento(25)
+		assert.equals(2625,lastToninas.precio())
+	}	
+	test "silverSea no es peligroso"
+	{
+		assert.notThat(silverSea.esPeligroso())
+	}
+	test "brasilia es peligroso"
+	{
+		assert.that(brasilia.esPeligroso())
+	}
+	test "aplicar 36 de descuento a garlicSea y tiene certificado de descuento"
+	{
+		garlicSea.aplicarDescuento(36)
+		assert.that(garlicSea.tieneDescuento())
+	}
+	test "la distancia entre yerevan y colonia no es 111"
+	{
+		assert.equals(111,yerevan.distanciaA(colonia))
+	}
+	test "la distancia entre goodAirs y gesellVillage es igual a la de gesellVillage a goodAirs"
+	{
+		assert.equals(goodAirs.distanciaA(gesellVillage),gesellVillage.distanciaA(goodAirs))
+	}
+	
+	test "me tomo el larc_V desde goodAirs hasta yerevan y tardo 446.4"
+	{
+		assert.equals(446.4,larc_v.cuantoTardoDesdeHasta(goodAirs,yerevan))
+	}
+	
+	test "me voy de vacaciones con los pibes y sale 8063.6"
+	{
+		assert.equals(8063.6,vacacionesConLosPibes.precio())
+	}
+	
+	test " finde largo romantico con chonga y tengo que dejar un ojo "
+	{
+		var ojo = 4916 // precio del ojo de la cara 
+		assert.equals(ojo,findeLargoConChongo.precio())
+	}
+	
+	test "El precio de andar con la nube de goku por 20 km es de 1600 pesos"
+	{
+		assert.equals(80*20, nubeVoladoraDeGoku.precioPorKilometro(20))
+	}
+	
+	test "phari no puede hacer un viaje a yerevan con barrilete cosmico"
+	{
+		assert.notThat(phari.hacerUnViajeA(yerevan, barrileteCosmico))
+	}
+	
+	test "phari puede costear un viaje a Silver Sea"
+	{
+		assert.that(phari.puedeCostear(silverSea, barrileteCosmico))
+	}
+		
+}

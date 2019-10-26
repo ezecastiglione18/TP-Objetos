@@ -1,13 +1,14 @@
 import localidades.*
 import empresa.*
+import mediosDeTransporte.*
 
 class User
 {
 	var nomreDeUsuario
 	var localidadDeOrigen
 	var viajes
-	var cuenta 
-	var siguiendo 
+	var property cuenta 
+	var siguiendo
 	
 	constructor(nombre,origen,viajesRealizados,dinero,genteQueSigue)
 	{
@@ -17,6 +18,7 @@ class User
 		cuenta = dinero
 		siguiendo = genteQueSigue
 	}
+	
 	// getter y setter de la localidad
 	method localidadDeOrigen(otraLocalidad)
 	{
@@ -37,34 +39,94 @@ class User
 			user.seguirUsuario(self)
 		}
 	}
-
-	method planearUnViajeA(unDestino,unaEmpresa)
+	
+	method planearUnViajeA(unDestino,unaEmpresa, unTransporte)
 	{
-		return unaEmpresa.armarViaje(self,unDestino)
+		return unaEmpresa.armarViaje(self,unDestino, unTransporte)
 	}
 	
-	method costoDelViaje(destino,empresa)
+	method costoDelViaje(unDestino,unaEmpresa, unTransporte)
 	{
-		return self.planearUnViajeA(destino,empresa).precio()
-	}
-	method puedeCostear(destino,empresa)
-	{
-		return cuenta - self.costoDelViaje(destino,empresa)>= 0	
+		return self.planearUnViajeA(unDestino,unaEmpresa, unTransporte).precio()
 	}
 	
-	method hacerUnViajeA(unaLocalidad,unaEmpresa)
+	method puedeCostear(unDestino,unaEmpresa, unTransporte)
 	{
-		if (self.puedeCostear(unaLocalidad, unaEmpresa))
+		return cuenta - self.costoDelViaje(unDestino,unaEmpresa, unTransporte)>= 0	
+	}
+	
+	/* VER EL METODO PARA CADA UNO DE LOS TIPOS DE USUARIOS DISTINTOS  method hacerUnViajeA(unDestino,unaEmpresa)
+	{
+		if (self.puedeCostear(unDestino,unaEmpresa)
 		{
-			self.agregarViaje(unaLocalidad, unaEmpresa)
-			cuenta -= self.costoDelViaje(unaLocalidad, unaEmpresa)
+			self.agregarViaje(unDestino,unaEmpresa)
 		}
-	}
-	method agregarViaje(unaLocalidad,unaEmpresa)
+	}*/
+	
+	method agregarViaje(unDestino,unaEmpresa, unTransporte)
 	{
-		viajes.add(self.planearUnViajeA(unaLocalidad,unaEmpresa))
+		viajes.add(self.planearUnViajeA(unDestino,unaEmpresa, unTransporte))
+	}
+}
+
+class Empresarial inherits User{
+	method vehiculoFavorito(unaEmpresa)
+	{
+		return unaEmpresa.transportesDisponibles().max({ vehiculo =>  vehiculo.velocidad()})
 	}
 	
+	override method hacerUnViajeA(unDestino, unaEmpresa)
+	{
+		if (self.puedeCostear(unDestino, unaEmpresa, self.vehiculoFavorito(unaEmpresa))
+			{
+				self.agregarViaje(unDestino,unaEmpresa, self.vehiculoFavorito(unaEmpresa))
+			}
+		)
+	}
+}
+
+class Estudiantil inherits User{	
+	var property limiteGastoEnVehiculo 
+	
+	constructor(nombre,origen,viajesRealizados,dinero,genteQueSigue, unLimite) = super(nombre,origen,viajesRealizados,dinero,genteQueSigue)
+	{
+		limiteGastoEnVehiculo = unLimite	
+	}
+	
+	method vehiculoFavorito(unaEmpresa)
+	{
+		return self.vehiculosQuePuedeCostear(unaEmpresa).max({vehiculo => vehiculo.velocidad()})
+	}
+	
+	method vehiculosQuePuedeCostear(empresa)
+	{
+		return  empresa.transportesDisponibles().filter({ vehiculo => vehiculo.loPuedeCostear(self) })
+	}
+	
+	override method hacerUnViajeA(unDestino, unaEmpresa)
+	{
+		if (self.puedeCostear(unDestino, unaEmpresa, self.vehiculoFavorito(unaEmpresa))
+			{
+				self.agregarViaje(unDestino,unaEmpresa, self.vehiculoFavorito(unaEmpresa))
+			}
+		)
+	}
+}
+
+class Familiar inherits User{
+	method vehiculoFavorito(unaEmpresa)
+	{
+		return unaEmpresa.transportesDisponibles().anyOne()
+	}
+	
+	override method hacerUnViajeA(unDestino, unaEmpresa)
+	{
+		if (self.puedeCostear(unDestino, unaEmpresa, self.vehiculoFavorito(unaEmpresa))
+			{
+				self.agregarViaje(unDestino,unaEmpresa, self.vehiculoFavorito(unaEmpresa))
+			}
+		)
+	}
 }
 
 	
